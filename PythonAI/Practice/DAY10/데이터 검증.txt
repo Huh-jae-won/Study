@@ -1,0 +1,20 @@
+sklearn.model_selection.cross_val_score()
+parameters:
+    esitmator :
+    x :
+    y :
+    groups : 보통 None
+    scoring :
+    cv :
+    ...
+
+skelarn.svm.SVC
+parameters :
+    C : default=1
+    kernel :
+    degree
+    gamma :
+    ...
+
+sklearn.mode_selection.validation_curve()
+                      .GridSearchCV()
