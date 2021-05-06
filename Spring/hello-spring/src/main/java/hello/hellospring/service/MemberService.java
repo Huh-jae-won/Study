@@ -6,9 +6,11 @@ import hello.hellospring.repository.MemberRepository;
 import java.util.List;
 import java.util.Optional;
 
+//@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
+//    @Autowired
     public MemberService(MemberRepository memberRepository) {
         // 생성자 사용 -> 외부 멤버리포지토리를 넣어줌 : Dependency Injection (= DI)
         this.memberRepository = memberRepository;
