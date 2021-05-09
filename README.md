@@ -9,3 +9,6 @@
 
 ### WebProgramming
 - 멘토링 수업으로 WebProgramming 수강중 (2021.04 ~)
+
+### Others
+- 위 항목 이외의 사이트에서 공부한 내용들
