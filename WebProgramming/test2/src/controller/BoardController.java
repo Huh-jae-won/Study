@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.BoardDAO;
+import model.BoardDTO;
+
 @WebServlet("/board")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,8 +27,25 @@ public class BoardController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String title = request.getParameter("title");
+		String writer = request.getParameter("writer");
+		String content = request.getParameter("content");
+		System.out.println("title : "+title);
+		System.out.println("writer : "+writer);
+		System.out.println("content : "+content);
+		
+		BoardDTO boardDto = new BoardDTO();
+		boardDto.setTitle(title);
+		boardDto.setWriter(writer);
+		boardDto.setContent(content);
+		
+		BoardDAO dao = new BoardDAO();
+		dao.insertBoard(boardDto);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/commonMsg.jsp");
+		request.setAttribute("msg","글작성성공" );
+		request.setAttribute("url","/main" );
+		rd.forward(request, response);
 	}
 
 }

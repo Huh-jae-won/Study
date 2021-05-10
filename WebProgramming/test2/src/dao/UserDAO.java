@@ -8,14 +8,11 @@ import model.UserDTO;
 
 public class UserDAO {
 	// DAO : Data Access Object
-	public static void main(String[] args) {
-
-	}
 	// 회원가입 메소드
 	public void doJoin(UserDTO param) {
 		Connection con = null;	// DB연결용
 		PreparedStatement ps = null;	// DB쿼리용
-		String sql = "INSERT INTO USER_TB(USER_ID, USER_PW) VALUES(?,PASSWORD(?))";
+		String sql = "INSERT INTO BOARD_TB(USER_ID, USER_PW) VALUES(?,PASSWORD(?))";
 //		ResultSet rs = null;		// Select용
 		
 		try {
