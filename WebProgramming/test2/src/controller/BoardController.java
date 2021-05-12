@@ -40,12 +40,21 @@ public class BoardController extends HttpServlet {
 		boardDto.setContent(content);
 		
 		BoardDAO dao = new BoardDAO();
-		dao.insertBoard(boardDto);
+		int result = dao.insertBoard(boardDto);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/commonMsg.jsp");
 		request.setAttribute("msg","글작성성공" );
 		request.setAttribute("url","/main" );
+		
+		if(result != 1) {
+			// 에러인경우
+			request.setAttribute("msg","글 작성 실패" );
+			request.setAttribute("url","/board" );
+		}else {
+			
+		}
 		rd.forward(request, response);
+		
 	}
 
 }

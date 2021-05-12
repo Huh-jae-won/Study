@@ -1,9 +1,24 @@
 package model;
 
 public class BoardDTO {
+	private int seq;
 	private String title;
 	private String writer;
 	private String content;
+	private String reg_dt;
+	
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	public String getReg_dt() {
+		return reg_dt;
+	}
+	public void setReg_dt(String regDT) {
+		this.reg_dt = regDT;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -24,7 +39,9 @@ public class BoardDTO {
 	}
 	@Override
 	public String toString() {
-		return "BoardDTO [title=" + title + ", writer=" + writer + ", content=" + content + "]";
+		return "BoardDTO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", reg_dt="
+				+ reg_dt + "]";
 	}
+	
 	
 }
