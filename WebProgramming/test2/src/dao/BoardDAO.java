@@ -9,7 +9,37 @@ import java.util.List;
 import connection.Conn;
 import model.BoardDTO;
 
-public class BoardDAO {
+public class BoardDAO {	
+//	게시물 하나 가져오기
+	public BoardDTO selectBoardOne(BoardDTO param) {
+		BoardDTO bDTO = new BoardDTO();
+		
+		Connection con = null;			// DB 연결용
+		PreparedStatement ps = null;	// 쿼리 진행용
+		ResultSet rs = null;			// 쿼리 결과 리턴
+		
+		String sql = "select * from board_tb where seq=?";
+		
+		try {
+			con = Conn.getCon();
+			ps = con.prepareStatement(sql);	// 쿼리 진행
+			ps.setInt(1, param.getSeq());
+			rs = ps.executeQuery();			// 쿼리 결과값 리턴
+			if(rs.next()) {
+				bDTO.setSeq(rs.getInt("seq"));
+				bDTO.setTitle(rs.getString("title"));
+				bDTO.setWriter(rs.getString("writer"));
+				bDTO.setContent(rs.getString("content"));
+				bDTO.setReg_dt(rs.getString("reg_dt"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		bDTO.setSeq(param.getSeq());
+		return bDTO;
+	}
 	
 //	게시글 가져오기
 	public List<BoardDTO> selectBoardList(){
@@ -19,7 +49,7 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "select * from board_tb";
+		String sql = "select * from board_tb order by seq desc";
 		try {
 			con = Conn.getCon();			// 쿼리 연결
 			ps = con.prepareStatement(sql);	// 쿼리 진행
@@ -38,7 +68,6 @@ public class BoardDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		// 리턴
 		return list;

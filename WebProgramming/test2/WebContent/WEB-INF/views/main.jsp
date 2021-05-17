@@ -17,7 +17,7 @@
    <div style="text-align: center;">
       <h1>메인 페이지</h1>
    
-      <a href="/join">회원가입</a>
+      <a href="/join">회원가입</a>		<!-- a태그를 이용하여 특정 주소로 이동 -->
       <a href="/board">게시물 작성</a>
    </div>
    <div class="col-md-12">
@@ -33,7 +33,7 @@
             </thead>
             <tbody>
             	<c:forEach items="${list }" var="dto"> <!-- list라는 놈을 변수명 dto 으로 사용 -->
-	            	<tr>
+	            	<tr onclick="goBoardDetail(${dto.seq})" >
 	                  <th scope="row">${dto.seq }</th>
 	                  <td>${dto.title }</td>
 	                  <td>${dto.writer }</td>
@@ -44,5 +44,11 @@
          </table>
       </div>
    </div>
+  <script>
+  <!--자바 스크립트 문법-->
+  	function goBoardDetail(seq){
+  		location.href = "/board/detail?seq="+seq;
+  	}
+  </script>
 </body>
 </html>
