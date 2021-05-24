@@ -17,7 +17,8 @@
    <h1 class="tit">게시물 수정</h1>
    <div class="col-md-12">
       <div class="col-md-8 writerWrap">
-         <form action="/board" method="post">
+         <form action="/board/mod" method="post">
+         	<input type="hidden" name="seq" value=${one.seq}>
             <div class="form-group">
                <label for="title">제목</label>
                <input type="text" name="title" class="form-control" id="title" value="${one.title}">

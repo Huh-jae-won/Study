@@ -10,6 +10,31 @@ import connection.Conn;
 import model.BoardDTO;
 
 public class BoardDAO {	
+	// 수정
+	public int modifyBoard(BoardDTO param) {
+		Connection con = null;			// DB 연결용
+		PreparedStatement ps = null;	// 쿼리 진행용
+		int ret = 0;
+		String sql = "update board_tb set title=?, writer=?, content=? where seq=?";
+		try {
+			con = Conn.getCon();
+			ps = con.prepareStatement(sql);	// 쿼리 진행
+			ps.setString(1,param.getTitle());
+			ps.setString(2,param.getWriter());
+			ps.setString(3,param.getContent());
+			ps.setInt(4, param.getSeq());
+			ret = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		}
+		finally {
+			Conn.close(con, ps, null);
+		}
+		return ret;
+	}
+	
 //	게시물 하나 가져오기
 	public BoardDTO selectBoardOne(BoardDTO param) {
 		BoardDTO bDTO = new BoardDTO();
@@ -35,6 +60,9 @@ public class BoardDAO {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally {
+			Conn.close(con, ps, null);
 		}
 		
 		bDTO.setSeq(param.getSeq());
@@ -67,6 +95,9 @@ public class BoardDAO {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally {
+			Conn.close(con, ps, rs);
 		}
 		
 		// 리턴
