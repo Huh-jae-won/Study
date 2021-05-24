@@ -9,10 +9,11 @@ import model.UserDTO;
 public class UserDAO {
 	// DAO : Data Access Object
 	// 회원가입 메소드
-	public void doJoin(UserDTO param) {
+	public int doJoin(UserDTO param) {
+		int ret = 0;
 		Connection con = null;	// DB연결용
 		PreparedStatement ps = null;	// DB쿼리용
-		String sql = "INSERT INTO BOARD_TB(USER_ID, USER_PW) VALUES(?,PASSWORD(?))";
+		String sql = "INSERT INTO USER_TB(USER_ID, USER_PW) VALUES(?,PASSWORD(?))";
 //		ResultSet rs = null;		// Select용
 		
 		try {
@@ -20,14 +21,15 @@ public class UserDAO {
 			ps = con.prepareStatement(sql);	// 쿼리매핑
 			ps.setString(1, param.getUserId());	// 1: index
 			ps.setString(2, param.getUserPw());
-			ps.executeUpdate();	// 쿼리 실행
+			ret = ps.executeUpdate();	// 쿼리 실행
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			ret = -1;
 			e.printStackTrace();
 		}
 		finally {
 			Conn.close(con, ps, null);
 		}
+		return ret;
 	}
 
 }

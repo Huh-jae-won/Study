@@ -28,13 +28,25 @@ public class JoinController extends HttpServlet {
 		System.out.printf("[POST] id: %s, pw: %s\n",id,pw);
 		
 		// DB에 넣는다
-		UserDTO dto = new UserDTO();
-		dto.setUserId(id);
-		dto.setUserPw(pw);
+		UserDTO uDTO = new UserDTO();
+		uDTO.setUserId(id);
+		uDTO.setUserPw(pw);
 		
-		UserDAO ud = new UserDAO();
-		ud.doJoin(dto);
+		UserDAO uDAO = new UserDAO();
+		int ret = uDAO.doJoin(uDTO);
 		
+		String msg = "가입에 성공했습니다.";
+		String url = "/login";
+		if(ret!=1) {
+			msg = "가입에 실패했습니다.";
+			url = "/join";
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/commonMsg.jsp");
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
+		
+		rd.forward(request, response);
 	}
 
 }
