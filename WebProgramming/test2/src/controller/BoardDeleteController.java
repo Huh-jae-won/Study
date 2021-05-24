@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,31 +12,32 @@ import javax.servlet.http.HttpServletResponse;
 import dao.BoardDAO;
 import model.BoardDTO;
 
-@WebServlet("/main")
-public class MainController extends HttpServlet {
+@WebServlet("/board/del")
+public class BoardDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public MainController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardDAO bdao = new BoardDAO();
-		List<BoardDTO> list = bdao.selectBoardList();
+		String seq = request.getParameter("seq");
+		BoardDAO bDAO = new BoardDAO();
+		BoardDTO bDTO = new BoardDTO();
+		bDTO.setSeq(Integer.parseInt(seq));
 		
-//		for (BoardDTO bDTO : list) {
-//			System.out.println("bdto : "+bDTO);
-//		}
+		int ret = bDAO.deleteBoard(bDTO);
 		
-		request.setAttribute("list", list);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/common/commonMsg.jsp");
+		String msg = "삭제에 성공했습니다.";
+		String url = "/main";
+		if(ret!=1) {
+			msg = "삭제에 실패했습니다.";
+			// 실패
+		}
+		request.setAttribute("url", url);
+		request.setAttribute("msg", msg);
 		
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/main.jsp");
 		rd.forward(request, response);
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

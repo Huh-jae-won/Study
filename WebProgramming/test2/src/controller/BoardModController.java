@@ -21,10 +21,6 @@ public class BoardModController extends HttpServlet {
 		String writer = request.getParameter("writer");
 		String content = request.getParameter("content");
 		String seq = request.getParameter("seq");
-		System.out.println("seq:"+seq);
-		System.out.println("tit:"+title);
-		System.out.println("wri:"+writer);
-		System.out.println("con:"+content);
 		BoardDAO bDAO = new BoardDAO();
 		BoardDTO bDTO = new BoardDTO();
 		bDTO.setTitle(title);

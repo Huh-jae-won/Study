@@ -32,8 +32,17 @@
                <textarea name="content" class="form-control" id="content">${one.content}</textarea>
             </div>
             <button class="btn btn-success">수정</button>
+            <button class="btn btn-danger" type="button" onclick="deleteBbs(${one.seq})">삭제</button>
          </form>   
       </div>
    </div>
+   
+   <script >
+	   	function deleteBbs(pk){
+	   		if(confirm('정말 삭제하시겠습니까?')){
+	   			location.href = "/board/del?seq="+pk;
+	   		}
+	   	}
+   </script>
 </body>
 </html>

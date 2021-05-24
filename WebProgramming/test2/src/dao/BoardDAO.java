@@ -10,6 +10,29 @@ import connection.Conn;
 import model.BoardDTO;
 
 public class BoardDAO {	
+	// 삭제
+	public int deleteBoard(BoardDTO param) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int ret = 0;
+		String sql = "delete from board_tb where seq=?";
+		try {
+			con = Conn.getCon();
+			ps = con.prepareStatement(sql);	// 쿼리진행
+			ps.setInt(1, param.getSeq());
+			ret = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = -1;
+		}
+		finally {
+			Conn.close(con, ps, null);
+		}
+		return ret;
+	}
+	
+	
 	// 수정
 	public int modifyBoard(BoardDTO param) {
 		Connection con = null;			// DB 연결용

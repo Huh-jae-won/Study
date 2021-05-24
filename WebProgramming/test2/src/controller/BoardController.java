@@ -30,9 +30,6 @@ public class BoardController extends HttpServlet {
 		String title = request.getParameter("title");
 		String writer = request.getParameter("writer");
 		String content = request.getParameter("content");
-		System.out.println("title : "+title);
-		System.out.println("writer : "+writer);
-		System.out.println("content : "+content);
 		
 		BoardDTO boardDto = new BoardDTO();
 		boardDto.setTitle(title);

@@ -19,13 +19,11 @@ public class BoardDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String seq = request.getParameter("seq");
-//		System.out.println("seq : "+seq);
 			BoardDTO param = new BoardDTO();
 			param.setSeq(Integer.parseInt(seq));
 			
 			BoardDAO bDAO = new BoardDAO();
 			BoardDTO retDTO = bDAO.selectBoardOne(param);
-			System.out.println("result : "+retDTO);
 			request.setAttribute("one", retDTO);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/boardDetail.jsp");
