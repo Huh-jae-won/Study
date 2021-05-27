@@ -6,7 +6,7 @@
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Login</title>
 <style>
 	.writerWrap {
 	   margin: 0 auto;
@@ -28,7 +28,7 @@
                   class="form-control" id="id">
             </div>
             <div class="form-group">
-               <label for="pw">패스워드</label> <input type="text" name="pw"
+               <label for="pw">패스워드</label> <input type="password" name="pw"
                   class="form-control" id="pw">
             </div>
             <button class="btn btn-primary">로그인</button>
