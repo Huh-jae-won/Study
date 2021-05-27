@@ -11,7 +11,7 @@
 </style>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Board</title>
 </head>
 <body>
    <h1 class="tit">게시물 작성</h1>
@@ -24,7 +24,7 @@
             </div>
                <div class="form-group">
             <label for="title">작성자</label>
-               <input type="text" name="writer" class="form-control" id="writer">
+               <input type="text" name="writer" class="form-control" id="writer" value="${loginUser}" readonly="readonly">
             </div>
             <div class="form-group">
                <label for="title">내용</label>
