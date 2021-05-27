@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +10,8 @@
    .writerWrap{margin: 0 auto;}
    .tit{text-align: center;}
 </style>
-
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Modify</title>
 </head>
 <body>
    <h1 class="tit">게시물 수정</h1>
@@ -25,14 +25,19 @@
             </div>
                <div class="form-group">
             <label for="title">작성자</label>
-               <input type="text" name="writer" class="form-control" id="writer" value="${one.writer}">
+               <input type="text" name="writer" class="form-control" id="writer" value="${loginUser}" readonly="readonly">
             </div>
             <div class="form-group">
                <label for="title">내용</label>
                <textarea name="content" class="form-control" id="content">${one.content}</textarea>
             </div>
-            <button class="btn btn-success">수정</button>
-            <button class="btn btn-danger" type="button" onclick="deleteBbs(${one.seq})">삭제</button>
+            <c:if test="${loginUser == one.writer}">
+	            <button class="btn btn-success">수정</button>
+	            <button class="btn btn-danger" type="button" onclick="deleteBbs(${one.seq})">삭제</button>
+            </c:if>
+            <c:if test="${loginUser != one.writer}">
+            	<a href="/main" role="button" class="btn btn-primary">뒤로가기</a>
+            </c:if>
          </form>   
       </div>
    </div>
